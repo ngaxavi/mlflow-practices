@@ -1,0 +1,58 @@
+version: '3.3'
+services:
+  db:
+    restart: always
+    image: postgres:12-alpine
+    container_name: mlflow-db
+    expose:
+      - "5432"
+    networks:
+      - mlflow
+    environment:
+      POSTGRES_DATABASE: mlflow
+      POSTGRES_USER: mlflow
+      POSTGRES_PASSWORD: mlflow
+      POSTGRES_ROOT_PASSWORD: root_mlflow
+    volumes:
+    - dbdata:/var/lib/postgresql/data
+
+  minio:
+    image: minio/minio:RELEASE.2020-06-03T22-13-49Z
+    volumes:
+      - miniodata:/data
+    ports:
+      - "9001:9000"
+    networks:
+      - mlflow
+    environment:
+      MINIO_ACCESS_KEY: secret_mlflow
+      MINIO_SECRET_KEY: secret_mlflow
+    command: server http://minio/miniodata
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  web:
+    restart: always
+    build: mlflow-tracking/k8s
+    image: mlflow-server
+    container_name: mlflow-server
+    expose:
+      - "5000"
+    networks:
+      - mlflow
+    environment:
+      MLFLOW_S3_ENDPOINT_URL: "http://minio"
+      AWS_ACCESS_KEY_ID: secret_mlflow
+      AWS_SECRET_ACCESS_KEY: secret_mlflow
+      AWS_DEFAULT_REGION: cluster-region
+
+networks:
+  mlflow:
+    driver: bridge
+
+volumes:
+  dbdata:
+  miniodata:
