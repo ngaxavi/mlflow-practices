@@ -1,5 +1,8 @@
 name: demo
-conda_env: conda.yaml
+# conda_env: conda.yaml
+
+docker_env:
+  image: mlflow-docker-env
 
 entry_points:
   main:

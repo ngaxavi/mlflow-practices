@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: mlflow-server
+  labels:
+    app: mlflow
+  namespace: mlflow
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+    - hosts:
+        - mlflow-server.example.com
+      secretName: mlflow-server-example-com-tls
+  rules:
+    - host: mlflow.example.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: mlflow-server
+              servicePort: 5000

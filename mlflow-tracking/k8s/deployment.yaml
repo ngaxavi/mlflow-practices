@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlflow-server
+  namespace: mlflow
+  labels:
+    app: mlflow
+spec:
+  selector:
+    matchLabels:
+      app: mlflow
+  template:
+    metadata:
+      labels:
+        app: mlflow-server
+    spec:
+      containers:
+        - name: mflow-server
+          image: ngaxavi/mlflow
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - secretRef:
+                name: mlflow-server
+                optional: false
