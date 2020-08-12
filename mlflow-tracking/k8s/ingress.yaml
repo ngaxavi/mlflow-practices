@@ -10,8 +10,8 @@ metadata:
 spec:
   tls:
     - hosts:
-        - mlflow-server.example.com
-      secretName: mlflow-server-example-com-tls
+        - mlflow-server.hahnpro.com
+      secretName: mlflow-server-h-com-tls
   rules:
     - host: mlflow.example.com
       http:

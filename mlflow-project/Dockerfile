@@ -1,8 +1,9 @@
-FROM continuumio/miniconda:4.5.4
+FROM frolvlad/alpine-miniconda3:python3.7
 
-RUN pip install mlflow>=1.0 \
-    && pip install numpy>=1.14.3 \
+RUN pip install mlflow>=1.9.0 \
+    && pip install numpy>=1.17.3 \
     && pip install scipy \
-    && pip install pandas==0.22.0 \
-    && pip install scikit-learn==0.19.1 \
-    && pip install cloudpickle
+    && pip install pandas==1.1.0 \
+    && pip install scikit-learn==0.23.2 \
+    && pip install cloudpickle \
+    && pip install boto3

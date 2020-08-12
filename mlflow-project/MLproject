@@ -3,6 +3,7 @@ name: demo
 
 docker_env:
   image: mlflow-docker-env
+#  environment: [["MLFLOW_EXPERIMENT_ID", "1"], ["MLFLOW_TRACKING_URI", "http://192.168.1.40:5000"], ["MLFLOW_S3_ENDPOINT_URL", "http://192.168.1.40:9000"], ["AWS_ACCESS_KEY_ID", "secret_mlflow"], ["AWS_SECRET_ACCESS_KEY", "secret_mlflow"],]
 
 entry_points:
   main:

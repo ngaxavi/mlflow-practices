@@ -3,8 +3,10 @@ channels:
   - defaults
 dependencies:
   - numpy>=1.17.3
-  - pandas>=1.0.0
-  - scikit-learn=0.19.1
+  - pandas==1.1.0
+  - scikit-learn=0.23.2
+  - boto3
+  - cloudpickle
   - pip
   - pip:
-      - mflow
+      - mflow>=1.9.0
