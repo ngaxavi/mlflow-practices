@@ -1,0 +1,23 @@
+<div class="lg:container lg:mx-auto pt-16">
+  <div class="flex content-start flex-wrap">
+    <ng-container *ngFor="let metric of metrics">
+      <div class="w-1/3 rounded overflow-hidden shadow-lg" *ngIf="metric.values.length === 1">
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">{{ metric.key | uppercase }}</div>
+        </div>
+        <div class="px-6 pt-2 pb-2">
+          <div class="font-bold text-5xl text-center mb-2">{{ metric.values[0].value | number: '0.0-4' }}</div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngFor="let chart of charts">
+      <div class="w-full h-1/2 rounded overflow-hidden shadow-lg" >
+        <div class="px-6 py-4">
+        </div>
+        <div class="px-6 pt-2 pb-2">
+          <div  [chart]="chart"></div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

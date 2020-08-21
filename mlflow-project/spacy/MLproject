@@ -1,0 +1,9 @@
+name: spacy_ner_example
+
+#conda_env: conda.yaml
+
+docker_env: spacy_docker_env
+
+entry_points:
+  main:
+    command: "python train.py"

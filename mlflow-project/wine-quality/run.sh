@@ -19,11 +19,11 @@ explain "Build environment"
 tell docker build -t mlflow-docker-env -f Dockerfile .
 
 #explain "Set Tracking endpoint"
-tell export MLFLOW_TRACKING_URI=http://192.168.1.40:5000 # set your ip addr mlfow-server
+tell export MLFLOW_TRACKING_URI=http://192.168.0.133:5000 # set your ip addr mlfow-server
 tell export MLFLOW_EXPERIMENT_ID=1
 #
 #explain "Set Credentials for access to buckets"
-tell export MLFLOW_S3_ENDPOINT_URL=http://192.168.1.40:9000 # set your ip addr minio
+tell export MLFLOW_S3_ENDPOINT_URL=http://192.168.0.133:9000 # set your ip addr minio
 tell export AWS_ACCESS_KEY_ID=secret_mlflow
 tell export AWS_SECRET_ACCESS_KEY=secret_mlflow
 
