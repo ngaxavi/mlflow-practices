@@ -2,7 +2,6 @@ FROM python:3.8-slim-buster
 ARG VERSION=1.10
 
 ENV PORT 5000
-ENV AWS_BUCKET mlflow
 
 RUN apt-get update -y && apt-get install -y build-essential libpq-dev
 
